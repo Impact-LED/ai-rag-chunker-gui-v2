@@ -1,6 +1,7 @@
 import { useState, type SubmitEvent } from "react";
 import './App.css'
 import FileUpload from './FileUpload'
+const ingest_url = import.meta.env.ENDPOINT_URL;
 
 function App() {
   const [ticketFile, setTicketFile] = useState<File | null>(null);
@@ -26,7 +27,7 @@ function App() {
     formData.append("tickets", ticketFile);
     formData.append("comments", commentFile);
 
-    const response = await fetch('/ingest', {
+    const response = await fetch(ingest_url, {
       method: "POST",
       body: formData
     })
