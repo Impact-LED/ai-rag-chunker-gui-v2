@@ -1,7 +1,7 @@
 import { useState, type SubmitEvent } from "react";
 import './App.css'
 import FileUpload from './FileUpload'
-const ENDPOINT_URL = import.meta.env.ENDPOINT_URL;
+const ENDPOINT_URL = import.meta.env.VITE_ENDPOINT_URL;
 
 function App() {
   const [ticketFile, setTicketFile] = useState<File | null>(null);
