@@ -12,16 +12,63 @@ body {
 .fileForm {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: min(100%, 41.25rem);
 }
 
 .fileForm .inputs {
   display: flex;
   width: 100%;
   justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
 }
 
-.fileForm button {
-  width: 50%;
+.fileForm hr {
+  margin: 0.75rem 0 0;
+  border: 0;
+  border-top: 1px solid #d7dce5;
+}
+
+.submission {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  align-items: flex-end;
+  gap: 1.25rem;
+}
+
+.submission label {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0 0;
+  font-weight: 600;
+}
+
+.submission label span {
+  font-size: small;
+}
+
+.submission select {
+  width: 100%;
+  margin: 0;
+}
+
+.submission button {
+  width: 100%;
+  margin: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .submission {
+    grid-template-columns: 1fr;
+  }
+
+  .submission label {
+    max-width: none;
+  }
+
+  .submission button {
+    width: 100%;
+  }
 }

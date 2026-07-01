@@ -1,7 +1,7 @@
 import { useState, type SubmitEvent } from "react";
 import './App.css'
 import FileUpload from './FileUpload'
-const ingest_url = import.meta.env.ENDPOINT_URL;
+const endpoint_url = import.meta.env.ENDPOINT_URL;
 
 function App() {
   const [ticketFile, setTicketFile] = useState<File | null>(null);
@@ -27,7 +27,7 @@ function App() {
     formData.append("tickets", ticketFile);
     formData.append("comments", commentFile);
 
-    const response = await fetch(ingest_url, {
+    const response = await fetch(endpoint_url, {
       method: "POST",
       body: formData
     })
@@ -45,15 +45,18 @@ function App() {
               <FileUpload onFileSelected={onFileSelected}  recordType='ticket' displayName='Tickets 🎟️' />
               <FileUpload onFileSelected={onFileSelected} recordType='comment' displayName='Comments and Attachments 💬' />
           </div>
-          <fieldset>
-            <label htmlFor="env">Environment:</label>
-            <select name="env" value={env} onChange={(event) => setEnv(event.target.value)}>
-              <option value="prod">Production</option>
-              <option value="dev">Development</option>
-              <option value="stage">Stage</option>
+          <hr style={{width: '100%'}}></hr>
+          <div className="submission">
+            <label htmlFor="env">
+              <span>Environment:</span>
+              <select id="env" value={env} onChange={(event) => setEnv(event.target.value)}>
+                <option value="prod">Production</option>
+                <option value="dev">Development</option>
+                <option value="stage">Stage</option>
             </select>
-          </fieldset>
-          <button type='submit'>Submit</button>
+            </label>
+            <button type='submit'>Submit</button>
+          </div>
         </form>
       </section>
     </>
