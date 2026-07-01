@@ -8,6 +8,8 @@ function App() {
   const [commentFile, setCommentFile] = useState<File | null>(null);
   const [env, setEnv] = useState('prod');
 
+  console.log("ENDPOINT_URL:", ENDPOINT_URL);
+
   const onFileSelected = (payload: {recordType: string, file: File}) => {
     if(payload.recordType == 'ticket') {
       setTicketFile(payload.file);
@@ -18,7 +20,6 @@ function App() {
   }
 
   const onSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
-    console.log("ENDPOINT_URL:", ENDPOINT_URL);
     event.preventDefault();
     if (!ticketFile || !commentFile) {
       return;
