@@ -1,7 +1,7 @@
 import { useState, type SubmitEvent } from "react";
 import './App.css'
 import FileUpload from './FileUpload'
-const endpoint_url = import.meta.env.ENDPOINT_URL;
+const ENDPOINT_URL = import.meta.env.ENDPOINT_URL;
 
 function App() {
   const [ticketFile, setTicketFile] = useState<File | null>(null);
@@ -18,6 +18,7 @@ function App() {
   }
 
   const onSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
+    console.log("ENDPOINT_URL:", ENDPOINT_URL);
     event.preventDefault();
     if (!ticketFile || !commentFile) {
       return;
@@ -27,7 +28,7 @@ function App() {
     formData.append("tickets", ticketFile);
     formData.append("comments", commentFile);
 
-    const response = await fetch(endpoint_url, {
+    const response = await fetch(ENDPOINT_URL, {
       method: "POST",
       body: formData
     })
